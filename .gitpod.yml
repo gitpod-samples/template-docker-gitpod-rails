@@ -6,16 +6,9 @@ tasks:
 
 
 ports:
-  - port: 5000
-    onOpen: ignore
-  - port: 5601
-    onOpen: open-browser
-  - port: 9200
-    onOpen: open-preview
-  - port: 9300
-    onOpen: ignore
-  - port: 9600
-    onOpen: ignore
+  - port: 3000-8999
+    onOpen: notify
+
 
 vscode:
   extensions:
