@@ -13,7 +13,7 @@ services:
     ports:
       - "5432:5432"
   myapp-web:
-    image: ddimitrov777/reactrails7-myapp-web
+    image: ddimitrov777/docker-compose-rails
     command: "bundle exec rails s -p 3000 -b '0.0.0.0'"
     environment:
       DB_HOST: db
