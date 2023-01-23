@@ -1,15 +1,8 @@
-tasks:
-  - init: |
-      docker-compose pull
-  - command: |
-      docker-compose up
-
-
-ports:
-  - port: 3000-8999
-    onOpen: notify
-
-
 vscode:
   extensions:
     - ms-azuretools.vscode-docker
+    - shd101wyy.markdown-preview-enhanced
+    - vortizhe.simple-ruby-erb
+    - CraigMaslowski.erb
+    - Vense.rails-snippets
+    - wingrunr21.vscode-ruby

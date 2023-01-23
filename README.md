@@ -1,23 +1,42 @@
-After launching into your IDE
+# Setting up Docker with Rails
 
-```
-docker-compose run --no-deps myapp-web rails new . --force --database=postgresql
-```
-Rails app and files should then be created
+The purpose is to have a docker network where you'll have the railsapp running from one container and the DB running on another. We can also choose to separate the frontend in a similar manner.
 
-If necessary, do 
+Make sure you inspect the docker-compose.yml file. If you have any questions, copy and paste that file into ChatGPT and it will explain the configurations.
+
+I'm going to automate some of these steps in the .gitpod.yml, however, feel free to modify or delete the file, if you don't want those commands running. Here is the full process:
+
+**1) Launch this workspace in Gitpod (or your local IDE)**
+
+**2) Install Rails onto the myrails Docker container**
+The starting Gemfile just has us loading rails. 
+
+Create the new Rails app with the one-time command of:
 ```
-sudo chown -R $USER:$USER .
+docker-compose run --no-deps myrailsapp rails new . --force --database=postgresql
 ```
 
-Next, run
-```
-docker-compose build
-```
+- This is like doing a ```docker run``` while also implementing some settings specified in the docker-compose.yml )
 
-To rebuild the image.
+- You can also apply Rails installation settings by replacing ```rails new .``` with whatever configurations you prefer (like --api)
 
-Edit config/database.yml to
+**3) Change file ownerships**
+
+Run
+
+```sudo chown -R $USER:$USER .```
+
+because Docker just created some files in your workspace as the user, "root". Need to make sure the user permissions actually match your own.
+
+**4) Rebuild the image and container for the Rails app, given the new installations**
+(Notice how the Gemfile was updated when we installed Rails)
+
+Run
+```docker-compose build```
+
+**5) Configure Rails to connect to our Postgres database**
+Edit config/database.yml to incorporate the proper DB settings:
+
 ```
 default: &default
   adapter: postgresql
@@ -34,17 +53,41 @@ development:
 test:
   <<: *default
 ```
-so we can have Rails connect to Postgres
 
-Run 
+Note that we have specified the environment variables in the docker-compose.yml file.
+You can change the usernames and passwords there.
+
+**6) Allow the proper hosts (for Gitpod users, or anyone experiencing Blocked Host errors)**
+In config/environments/development.rb, within the Rails.application.configure block, put in
+
+```
+config.hosts << /.*\.gitpod\.io/
+```
+
+**7) Launch your app, with all its services!**
 ```
 docker-compose up
 ```
-to launch the app.
+
+This will launch your Rails server as well as the Postgres DB.
+
+If you want to shut everything down, just do
+```
+docker-compose down
+```
+
+And then to launch everything back up, it's as easy as ```docker-compose up```
+
+**To execute rails terminal commands**
+Run
+```docker exec -it <container_id_or_name> bash```
 
 
-To launch the Rails terminal (so you can use rails generate, etc.), do
-```
-docker exec -it <container> /bin/bash
-```
+To get container IDs or names, use ```docker-compose ps``` and/or ```docker ps```
+
+From the new bash prompt, you can run your standard rails commands like ```rails generate```, ```rails console```, etc.
+
+
+
+
 
