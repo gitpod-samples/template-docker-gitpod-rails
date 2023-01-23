@@ -15,9 +15,10 @@ Create the new Rails app with the one-time command of:
 ```
 docker-compose run --no-deps myrailsapp rails new . --force --database=postgresql
 ```
-This is like doing a ```docker run``` while also implementing some settings specified in the docker-compose.yml
 
-You can also apply Rails installation settings by replacing ```rails new .``` with whatever configurations you prefer (like --api)
+- This is like doing a ```docker run``` while also implementing some settings specified in the docker-compose.yml )
+
+- You can also apply Rails installation settings by replacing ```rails new .``` with whatever configurations you prefer (like --api)
 
 **3) Change file ownerships**
 

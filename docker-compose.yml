@@ -13,6 +13,7 @@ services:
     ports:
       - "5432:5432"
   myrailsapp:
+
     build: .
     command: "bundle exec rails s -p 3000 -b '0.0.0.0'"
     environment:
@@ -32,3 +33,4 @@ volumes:
 networks:
   default:
     name: myapp_default
+
