@@ -1,9 +1,3 @@
-tasks:
-  - init: |
-      docker-compose pull
-  - command: |
-      docker-compose up
-
 vscode:
   extensions:
     - ms-azuretools.vscode-docker
