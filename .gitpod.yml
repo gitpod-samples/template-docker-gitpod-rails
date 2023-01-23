@@ -11,7 +11,7 @@ tasks:
       echo "default: &default
         adapter: postgresql
         encoding: unicode
-        pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+        pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
         host: <%= ENV.fetch('DB_HOST', 'localhost') %>
         database: <%= ENV['DB_NAME'] %>
         username: <%= ENV['DB_USERNAME'] %>
