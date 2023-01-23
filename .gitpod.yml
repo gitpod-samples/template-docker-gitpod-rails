@@ -1,6 +1,7 @@
 tasks:
   - name: Setup Rails App
     command: |
+      if [ ! -d "./app" ]; then
       echo "Creating new Rails app with postgresql database..."
       docker-compose run --no-deps myrailsapp rails new . --force --database=postgresql
       echo "Changing ownership of the newly created files..."
@@ -26,6 +27,9 @@ tasks:
       echo "Inserting config.hosts << /.*\.gitpod\.io/ into development.rb"
       sed -i "/Rails.application.configure do/a \  config.hosts << /.*\.gitpod\.io/" config/environments/development.rb
       
+      else
+      echo "App already exists, skipping setup..."
+      fi
       echo "Launching the App"
       docker-compose up
     
