@@ -1,5 +1,5 @@
 tasks:
-  - name: Set up Rails App
+  - name: Setup Rails App
     command: |
       echo "Creating new Rails app with postgresql database..."
       docker-compose run --no-deps myrailsapp rails new . --force --database=postgresql
