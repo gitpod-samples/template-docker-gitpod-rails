@@ -1,3 +1,28 @@
+tasks:
+  - name: Set up Rails App
+    command: |
+      echo "Creating new Rails app with postgresql database..."
+      docker-compose run --no-deps myrailsapp rails new . --force --database=postgresql
+      echo "Changing ownership of the newly created files..."
+      sudo chown -R $USER:$USER .
+      echo "Rebuilding the Docker image..."
+      docker-compose build
+      echo "Replacing config/database.yml with provided settings..."
+      echo "default: &default
+        adapter: postgresql
+        encoding: unicode
+        pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+        host: <%= ENV.fetch('DB_HOST', 'localhost') %>
+        database: <%= ENV['DB_NAME'] %>
+        username: <%= ENV['DB_USERNAME'] %>
+        password: <%= ENV['DB_PASSWORD'] %>
+      
+      development:
+        <<: *default
+      
+      test:
+        <<: *default" > config/database.yml
+    
 vscode:
   extensions:
     - ms-azuretools.vscode-docker
