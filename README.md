@@ -91,5 +91,6 @@ From the new bash prompt, you can run your standard rails commands like ```rails
 
 
 
+Inspiration: I want to give credit to KnowBe4's Docker and Rails guide, as well as The Pragmatic Bookshelf's Docker for Rails Developers, both of which provided me commands and insight for this.
 
-
+And also with ChatGPT, I was able to learn and get everything to play along 3-4x faster than I would have otherwise....
