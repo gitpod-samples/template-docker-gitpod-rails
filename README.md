@@ -4,6 +4,8 @@ The purpose is to have a docker network where you'll have the railsapp running f
 
 Make sure you inspect the docker-compose.yml file. If you have any questions, copy and paste that file into ChatGPT and it will explain the configurations.
 
+Also, check out the .gitpod.yml file because **I have automated some of the below commands**.
+
 I'm going to automate some of these steps in the .gitpod.yml, however, feel free to modify or delete the file, if you don't want those commands running. Here is the full process:
 
 **1) Launch this workspace in Gitpod (or your local IDE)**
