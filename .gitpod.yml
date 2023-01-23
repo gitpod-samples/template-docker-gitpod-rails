@@ -16,12 +16,18 @@ tasks:
         database: <%= ENV['DB_NAME'] %>
         username: <%= ENV['DB_USERNAME'] %>
         password: <%= ENV['DB_PASSWORD'] %>
-      
+
       development:
         <<: *default
-      
+
       test:
         <<: *default" > config/database.yml
+
+      echo "Inserting config.hosts << /.*\.gitpod\.io/ into development.rb"
+      sed -i "/Rails.application.configure do/a \  config.hosts << /.*\.gitpod\.io/" config/environments/development.rb
+      
+      echo "Launching the App"
+      docker-compose-up
     
 vscode:
   extensions:
