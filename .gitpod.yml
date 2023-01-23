@@ -27,7 +27,7 @@ tasks:
       sed -i "/Rails.application.configure do/a \  config.hosts << /.*\.gitpod\.io/" config/environments/development.rb
       
       echo "Launching the App"
-      docker-compose-up
+      docker-compose up
     
 vscode:
   extensions:
