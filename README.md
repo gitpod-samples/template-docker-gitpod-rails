@@ -10,6 +10,8 @@ I'm going to automate some of these steps in the .gitpod.yml, however, feel free
 
 **1) Launch this workspace in Gitpod (or your local IDE)**
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/gitpod-samples/template-docker-gitpod-rails)
+
 **2) Install Rails onto the myrails Docker container**
 The starting Gemfile just has us loading rails. 
 
